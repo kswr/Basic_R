@@ -1,0 +1,25 @@
+---
+title: "Basic R Workshops 02 - R Core #2"
+output: html_notebook
+---
+# R Code style standards
+
+[Google R Style Guide](https://google.github.io/styleguide/Rguide.xml)
+
+### Indentation
+Indent lines with two spaces, not tabs. If code is inside parentheses, indent to the innermost parentheses.
+
+### Spacing
+Use only single spaces. Add spaces between binary operators and operands. Do not add spaces between a function name and the argument list. Add a single space between items in a list, after each comma.
+
+### Blocks
+Don’t place an opening brace (“{”) on its own line. Do place a closing brace (“}”) on its own line. Indent inner blocks (by two spaces).
+
+### Semicolons
+Omit semicolons at the end of lines when they are optional.
+
+### Naming
+Name objects with lowercase words, separated by periods. For function names, capitalize the name of each word that is joined together, with no periods. Try to make function names verbs.
+
+### Assignment
+Use <-, not = for assignment statements.

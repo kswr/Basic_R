@@ -171,11 +171,106 @@ for (i in seq(from=5, to=25, by=5)) print(i)
 # x$n
 # x@n
 
-# 2.e.2 Indexing by Integer vector (Indeksowanie wektorem numberycznym)
+# 2.e.2 Indexing by Integer vector (Indeksowanie wektorem numerycznym)
+
+v <- 100:119
+v[5]
+v[1:5]
+v[c(1, 6, 11, 16)]
+v[[3]] # works the same in this case
+v[-15:-1]
+
+# for listst
+
+l <- list(a=1, b=2, c=3, d=4, e=5, f=6, g=7, h=8, i=9, j=10)
+l[1:3]
+typeof(l[1])
+typeof(l[[1]])
+
+# multidimensional data structure
+
+m <- matrix(data=c(101:112), nrow=3, ncol=4)
+m
+m[3] # number of the element
+m[8]
+m[3,4] # dimensions
+m[1:2,1:2]
+m[1:2, ] # to get all from given dimension
+m[3:4]
+m[,3:4]
+
+# class of returned object due to it's dimensions
+
+a <- array(data=c(101:124), dim=c(2, 3, 4))
+a
+class(a[1, 1, ])
+class(a[1, , ])
+class(a[1:2, 1:2, 1:2])
+class(a[1, 1, 1, drop=FALSE])
+
+# replacing elements
+
+m
+m[1] <- 1000
+m
+
+m[1:2, 1:2] <- matrix(c(1001:1004), nrow=2, ncol=2)
+m
+
+v <- 1:12
+v[15] <- 15
+v
+
 # 2.e.3 Indexing by Lobical vector (Indeksowanie wektorem logicznym)
+
+d <- rep(c(TRUE, FALSE), 10)
+d
+v
+v[rep(c(TRUE, FALSE), 10)] # rep applied to v
+v[d]
+
+# vector can be shorter
+
+v[c(TRUE, FALSE, FALSE)]
+
+# same notation for listst
+
+l[(l > 7)]
+
 # 2.e.4 Indexing by name (Indeksowanie nazwą)
+
+l <- list(a=1, b=2, c=3, d=4, e=5, f=6, g=7, h=8, i=9, j=10)
+l$j
+l[c("a", "b", "c")]
+l['a']
+
+dairy <- list(milk="1 gallon", butter="1 pound", eggs=12)
+dairy$milk
+typeof(dairy$milk)
+dairy['milk']
+typeof(dairy['milk'])
+dairy[["milk"]]
+typeof(dairy[["milk"]])
+dairy[["mil"]]
+dairy[["mil",exact=FALSE]]
+
+# list of lists
+
+fruit <- list(apples=6, oranges=3, bananas=10)
+shopping.list <- list (dairy=dairy, fruit=fruit)
+shopping.list
+
+shopping.list[[c("dairy", "milk")]]
+shopping.list[[c(1,2)]]
+
 # 2.f. R Code style standards (Standard stylistyczny kodu)
+
+# Notebook
+
 # 3. Objects (Obiekty)
+
+
+
 # 3.a. Primitive object types (Obiekty prymitywne)
 # 3.b. Vectors (Wektory)
 # 3.c. Lists (Listy)
