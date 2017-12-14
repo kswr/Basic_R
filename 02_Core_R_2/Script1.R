@@ -94,11 +94,72 @@ T & T
 f <- function() {x <- 1; y <-2; x+y}
 f()
 
-# conditional
-
 # 2.d. Control structures (Kontrola przepływu)
+
 # 2.d.1. Conditional statements (Wyrażenia warunkowe)
+
+# if
+
+typeof(`if`)
+
+if (FALSE) "this will not be printed"
+if (FALSE) "this will not be printed" else "this will be printed"
+x <= 10
+if (is(x, "numeric")) x/2 else print("x is not numeric")
+
+# if is not a vector operation
+
+x <- 10
+y <- c(8, 10, 12, 3, 17)
+if (x < y) x else y
+
+# to get a vector operation, use ifelse
+
+a <- c("a", "a", "a", "a", "a")
+b <- c("b", "b", "b", "b", "b")
+ifelse(c(TRUE, FALSE, TRUE, FALSE, TRUE), a, b)
+
+# switch
+
+x <- 'a'
+
+switch (x,
+  'a' = "alligator",
+  'b' = "bear",
+  'c' = "camel",
+  "moose"
+)
+
+# switch in function
+
+animal.switch <- function(x){
+  switch (x,
+    'a' = "alligator",
+    'b' = "bear",
+    'c' = "camel",
+    "moose"
+  )
+}
+
+animal.switch(x)
+animal.switch('b')
+animal.switch(T)
+animal.switch(F)
+animal.switch(3)
+
 # 2.d.2. Loops (pętle)
+
+# repeat
+
+i <- 5
+repeat {if (i > 25) break else {print(i); i <- i + 5;}}
+
+# while
+
+i <- 5
+while (i <= 25) {print(i); i <- i + 5}
+
+
 # 2.e. Accessing data structures (Struktury danych)
 # 2.e.1. Data structure operators (Operatory struktur danych)
 # 2.e.2 Indexing by Integer vector (Indeksowanie wektorem numberycznym)
@@ -125,7 +186,7 @@ f()
 # 4.b. Working with environments (Praca ze środowiskami)
 # 4.c. The global environment (Środowisko globalne)
 # 4.d. Environments and functions (Środowiska i funkcje)
-# 4.d.1. Working with the call stack
+# 4.d.1. Working with the call stack (Stos wywołań)
 # 4.d.2. Evaluating functions in different environments
 # 4.d.3. Adding objects to an environment
 # 4.e. Exceptions (Wyjątki)
