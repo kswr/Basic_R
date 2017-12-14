@@ -269,9 +269,8 @@ shopping.list[[c(1,2)]]
 
 # 3. Objects (Obiekty)
 
-
-
 # 3.a. Primitive object types (Obiekty prymitywne)
+
 # 3.b. Vectors (Wektory)
 # 3.c. Lists (Listy)
 # 3.d. Other objects (Inne obiekty)
