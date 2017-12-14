@@ -152,16 +152,25 @@ animal.switch(3)
 # repeat
 
 i <- 5
-repeat {if (i > 25) break else {print(i); i <- i + 5;}}
+repeat {if (i > 25) break else {print(i); i <- i + 5}}
 
 # while
 
 i <- 5
 while (i <= 25) {print(i); i <- i + 5}
 
+# for
+
+for (i in seq(from=5, to=25, by=5)) print(i)
 
 # 2.e. Accessing data structures (Struktury danych)
 # 2.e.1. Data structure operators (Operatory struktur danych)
+
+# x[i]
+# x[[i]]
+# x$n
+# x@n
+
 # 2.e.2 Indexing by Integer vector (Indeksowanie wektorem numberycznym)
 # 2.e.3 Indexing by Lobical vector (Indeksowanie wektorem logicznym)
 # 2.e.4 Indexing by name (Indeksowanie nazwą)
