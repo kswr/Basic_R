@@ -265,25 +265,333 @@ shopping.list[[c(1,2)]]
 
 # 2.f. R Code style standards (Standard stylistyczny kodu)
 
-# Notebook
+# Notebook "R Code style standards"
 
 # 3. Objects (Obiekty)
 
 # 3.a. Primitive object types (Obiekty prymitywne)
 
+# Notebook "Primitive object types"
+
 # 3.b. Vectors (Wektory)
+
+v <- c(.295, .300, .250, .287, .215)
+v
+typeof(v)
+class(v)
+
+# c function coerces all its arguments into a single type
+
+v <- c(.295, .300, .250, .287, "zilch")
+v
+typeof(v)
+class(v)
+
+# to recursively assemble vectors from other structures use recursive = T
+
+v <- c(.295, .300, .250, .287, list(.102, .200, .303), recursive=TRUE)
+v
+typeof(v)
+class(v)
+
+# list as an argument returns list (not recursively)
+
+v <- c(.295, .300, .250, .287, list(.102, .200, .303), recursive=TRUE)
+v
+typeof(v)
+class(v)
+v <- c(.295, .300, .250, .287, list(1, 2, 3))
+typeof(v)
+class(v)
+v
+
+# sequences
+
+1:10
+
+# seq() function
+seq(from=5, to=25, by=5)
+
+# manipulate the length
+
+w <- 1:10
+w
+
+length(w) <- 5
+w
+
+length(w) <- 10
+w
+
 # 3.c. Lists (Listy)
+
+# list elements can be accessed by position or name (if each object has a name we call it pairlist)
+
+l <- list(1, 2, 3, 4, 5)
+l[1]
+l[[1]]
+
+parcel <- list(destination="New York", dimensions=c(2, 6, 9), price=12.95)
+parcel$price
+
 # 3.d. Other objects (Inne obiekty)
+
 # 3.d.1. Matrices (Matryce)
+
+# extension of vector to two dimensions
+
+m <- matrix(
+  data = 1:12,
+  nrow = 4,
+  ncol = 3,
+  dimnames = list(c("r1", "r2", "r3", "r4"),
+                  c("c1", "c2", "c3"))
+)
+
+m
+m['r1','c1']
+m['r2','c2']
+m['c2','r2'] # error
+m[5,5] # same error
+m[2,2]
+
+n <- matrix(1:16, 4, 4)
+n
+n[3,3]
+
+is.matrix(n)
+
+# as.matrix()
+
+x <- 1
+x <- as.matrix(x)
+class(x)
+typeof(x)
+
+x <- 1:16
+y <- 17:32
+z <- 33:48
+df <- data.frame(x,y,z)
+class(df)
+typeof(df)
+as.matrix(df) -> df.as.matrix
+df.as.matrix
+class(df.as.matrix)
+typeof(df.as.matrix)
+
 # 3.d.2. Arrays (Tablice)
+
+# extension of vector to more than two dimensions
+
+a <- array(data=1:24, dim=c(3, 4, 2))
+a
+class(a)
+typeof(a)
+
 # 3.d.3. Factors (Faktory)
+
+# ordered collection of categorical items
+
+eye.colors <- c("brown", "blue", "blue", "green","brown", "brown", "brown")
+eye.colors
+
+eye.colors <- factor(c("brown", "blue", "blue", "green", "brown", "brown", "brown"))
+eye.colors
+levels(eye.colors)
+
+# ordering levels
+
+survey.results <- factor(
+  c(
+    "Disagree",
+    "Neutral",
+    "Strongly Disagree",
+    "Neutral",
+    "Agree",
+    "Strongly Agree",
+    "Disagree",
+    "Strongly Agree",
+    "Neutral",
+    "Strongly Disagree",
+    "Neutral",
+    "Agree"
+  ),
+  levels = c(
+    "Strongly Disagree",
+    "Disagree",
+    "Neutral",
+    "Agree",
+    "Strongly Agree"
+  ),
+  ordered = TRUE
+)
+
+survey.results
+
+# factors interally use integers
+
+eye.colors
+class(eye.colors)
+eye.colors.integer.vector <- unclass(eye.colors)
+eye.colors.integer.vector
+class(eye.colors.integer.vector)
+
+# set it back
+class(eye.colors.integer.vector) <- "factor"
+eye.colors.integer.vector
+class(eye.colors.integer.vector)
+
 # 3.d.4. Data frames (Ramki danych)
+
+# natural way to represent datasets (business/academia)
+# columns = variables
+
+top.bacon.searching.cities <- data.frame(
+  city = c(
+    "Seattle",
+    "Washington",
+    "Chicago",
+    "New York",
+    "Portland",
+    "St Louis",
+    "Denver",
+    "Boston",
+    "Minneapolis",
+    "Austin",
+    "Philadelphia",
+    "San Francisco",
+    "Atlanta",
+    "Los Angeles",
+    "Richardson"
+  ),
+  rank = c(100, 96, 94, 93, 93, 92, 90, 90, 89, 87,
+           85, 84, 82, 80, 80)
+)
+
+top.bacon.searching.cities
+
+typeof(top.bacon.searching.cities)
+class(top.bacon.searching.cities)
+
+# which means we can reffer to elements using methods for lists and data.frames
+
+top.bacon.searching.cities$rank
+
 # 3.d.5. Formulas (Formuły)
+
+# lets user describe relationships between variables (for plotting, modeling and so on)
+
+sample.formula <- as.formula(y~x1+x2+x3)
+class(sample.formula)
+typeof(sample.formula)
+
 # 3.d.6. Time series (szeregi czasowe)
+
+# ts(data = NA, start = 1, end = numeric(0), frequency = 1, deltat = 1, ts.eps = getOption("ts.eps"), class = , names = )
+
+ts(1:8, start=c(2008, 2), frequency=4)
+
+library(nutshell)
+data(turkey.price.ts)
+turkey.price.ts
+
+start(turkey.price.ts)
+end(turkey.price.ts)
+frequency(turkey.price.ts)
+deltat(turkey.price.ts)
+
 # 3.d.7. Shingles
+
+# pomijamy
+
 # 3.d.8. Dates and times (Data i czas)
+
+date <- as.Date("2/13/2009","%m/%d/%Y")
+date
+
+today <- Sys.Date()
+today
+
+today - date
+
+difftime(today, date, units = 'weeks')
+
 # 3.d.9. Connections (Połączenia)
+ # consumption.connection <- gzfile(description="consumption.RData",open="r")
+# load(consumption.connection)
+# close(consumption.connection)
+
 # 3.e. Atributes (Atrybuty)
+
+v <- c(.295, .300, .250, .287, .215)
+
+class(turkey.price.ts)
+
+comment(turkey.price.ts)
+turkey.price.ts -> new.ts
+comment(new.ts) <- "Turkey price time series"
+comment(new.ts)
+
+dim(parcel)
+dimnames(parcel)
+names(parcel)
+row.names(parcel)
+tsp(turkey.price.ts)
+levels(eye.colors)
+
+m <- matrix(
+  data = 1:12,
+  nrow = 4,
+  ncol = 3,
+  dimnames = list(c("r1", "r2", "r3", "r4"),
+                  c("c1", "c2", "c3"))
+)
+
+attributes(m)
+
+colnames(m)
+rownames(m)
+
+class(m)
+typeof(m)
+
+dim(m) <- NULL
+m
+class(m)
+typeof(m)
+
+# new example
+
+a <- array(1:12,dim=c(3,4))
+a
+
+b <- 1:12
+b
+
+a[2,2]
+b[2,2]
+a == b
+all.equal(a,b)
+identical(a,b)
+# dim(b) <- c(3,4)
+dim(b) <- dim(a)
+b[2,2]
+all.equal(a,b)
+identical(a,b)
+
+# 3.e.1 Class (Klasa)
+
+# polymorphism
+
+v <- as.integer(c(1, 1, 1, 2, 1, 2, 2, 3, 1))
+levels(v) <- c("what", "who", "why")
+class(v)
+attributes(v) # incipit class
+class(v) <- "factor"
+v
+class(v)
+attributes(v)
+
 # 4. Symbols and evironments (Symbole i środowiska)
 # 4.a. Symbols (Symbole)
 # 4.b. Working with environments (Praca ze środowiskami)

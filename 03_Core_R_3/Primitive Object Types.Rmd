@@ -1,0 +1,10 @@
+---
+title: "Primitive object types"
+output: html_notebook
+---
+
+Primitive objects table from "R in a Nutshell" by Joseph Adler
+![table1](./Objects_table_01.png)
+![table1](./Objects_table_02.png)
+![table1](./Objects_table_03.png)
+
