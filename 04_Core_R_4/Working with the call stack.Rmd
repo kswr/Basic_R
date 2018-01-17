@@ -1,0 +1,6 @@
+---
+title: "Working with the call stack"
+output: html_notebook
+---
+
+![Manipulating the call stack](manipulating_the_call_stack.png)
